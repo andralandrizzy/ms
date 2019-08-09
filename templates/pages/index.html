@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load fontawesome %}
+{%autoescape on %}
+{% block title %} | Welcome {% endblock %}
+{% block  content %}
+<div class="showcase">
+    <div class="bg-image"></div>
+    <div class="container">
+        <div class="show-wrapper">
+            <div class="content">
+                <h1>Protection & Transportation Services</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Sapiente ullam ea mollitia facere corporis quaerat ducimus
+                    magnam magni, recusandae rerum!
+                </p>
+                <a href="{% url 'about' %}" class="btn_primary">Learn more...</a>
+            </div>
+            <div class="form">
+                <h1>Get a Quote</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Culpa, tenetur quae. Facere ullam alias minus facilis est
+                    libero quisquam modi a aspernatur aut, ipsa impedit?</p>
+                <form action="{% url  'index' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" placeholder="Name: " name="name" required>
+                    <input type="text" placeholder="Email: " name="email" required>
+                    <textarea id="textarea2" class="materialize-textarea" placeholder="Type your message :"
+                        data-length="200" name="message"></textarea>
+                    <input type="submit" value="Send">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- alerts -->
+<section class="about">
+    {% include 'partials/_alerts.html' %}
+    {% if about_us %}
+    {% for about in about_us %}
+    <div class="content">
+        <div class="abt-image">
+            <img src="{{ about.image.url}}" alt="about image">
+        </div>
+        <div class="info">
+            <h1 class="subtitle">About Us</h1>
+            <h1 class="title">{{about.title}}</h1>
+            <p>
+                {{about.description}}
+            </p>
+            <div class="btn-wrapper">
+                <a href="{% url 'about' %}" class="btn_secondary">see more</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="no-content">
+        <p class="para"> No content Available</p>
+    </div>
+    {% endif %}
+</section>
+<section id="about" class="about_us">
+    <div class="facts">
+        <h1 class="title">why choose us</h1>
+        <div class="fact_content">
+            <div class="rep">
+                <div class="abt-icon">
+                    <a href="#"><i class="fas fa-award"></i></a>
+                </div>
+                <div class="content">
+                    <h2>Good reputation</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        Numquam a suscipit esse dolore, error ipsum culpa architecto
+                        ipsa distinctio! Eaque dicta, dolores nemo accusamus facere
+                        autem?</p>
+                </div>
+            </div>
+            <div class="choose_us">
+                <div class="abt-icon">
+                    <a href="#"><i class="fas fa-star"></i></a>
+                </div>
+                <div class="content">
+                    <h2>We are fair and affordable</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        Numquam a suscipit esse dolore, error ipsum culpa architecto
+                        ipsa distinctio! Eaque dicta, dolores nemo accusamus facere
+                        autem?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="service">
+    <div class="service_wrapper">
+        <h1 class="subtitle">Our Services</h1>
+        <h1 class="title">What Services do we have to offer you</h1>
+        <div class="service_card-wrapper">
+
+            {% if services %}
+            {% for service in services %}
+            <div class="service_card">
+                <a href="#" class="card_icons"><i class="">{{service.icon.as_html}}</i></a>
+                <h1>{{service.job}}</h1>
+                <p>{{service.summary}}
+                </p>
+                <a class="card_btn" href="#"><span>learn M</span>ore</a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="no-content">
+                <p class="para"> There is no service yet listed</p>
+            </div>
+            {% endif %}
+        </div>
+        <div class="btn-wrapper">
+            <a href="{% url 'services' %}" class="btn_secondary">view all</a>
+        </div>
+    </div>
+</section>
+
+
+<section id="portfolio">
+    <div class="home-portfolio">
+        <h1 class="subtitle">Our Portfolio</h1>
+        <h1 class="title">Check our latest works</h1>
+        <div class="port-image_wrapper">
+            {% if portfolios %}
+            {% for portfolio in portfolios %}
+            <div class="port-container">
+                <img src="{{portfolio.image.url}}" alt="Images portfolio">
+                <div class="overlay">
+                    <div class="text"><a href="{% url 'portfolio' portfolio.id %}" class="btn">see project</a></div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <div class="no-content">
+                <p class="para"> Portfolio is empty at the moment. Check back later.</p>
+            </div>
+            {% endif %}
+        </div>
+        <div class="btn-wrapper">
+            <a href="{% url 'portfolios'%}" class="btn_secondary">view all</a>
+        </div>
+    </div>
+</section>
+
+<section id="clients">
+    <h1><span class"title-clr">Some of My <br></span> Clients</h1>
+    <div class="client-content">
+        {% if clients %}
+        {% for client in clients %}
+        <div class="client-img">
+            <a href="{{client.client_link}}" class="client-link">
+                <img src="{{client.image.url}}" alt="client images">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-content">
+        <p class="para"> There is no client yet listed</p>
+    </div>
+    {% endif %}
+</section>
+{% endblock%}
+{% endautoescape%}

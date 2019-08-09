@@ -1,0 +1,73 @@
+#header {
+    height: auto;
+    color: #fed102;
+    background-color: #000;
+    padding: 5px 30px;
+}
+
+#branding h1 {
+    color: #fed102;
+}
+
+div .breadcrumbs {
+    color: rgba(0, 0, 0, 0.6);
+    background-color: #fed102;
+    padding: 15px 30px;
+}
+
+div .breadcrumbs a {
+    padding: 5px 15px;
+    color: #000;
+}
+
+div .breadcrumbs a:hover {
+    color: rgb(0, 0, 0, 0.5);
+}
+
+.module caption, #changelist-filter h2 {
+    background-color: #fed102;
+    color: #000;
+}
+
+a.section:link, a.section:visited {
+    color: #000;
+    text-decoration: none;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: #fed102;
+    color: #000;
+}
+
+.selector .selector-chosen h2 {
+    background: #fed102;
+    color: #000;
+}
+
+#changelist-filter ul li.selected a {
+    color: #fed102;
+    font-weight: 600;
+}
+
+ul #changelist-filter ul a:focus, #changelist-filter ul a:hover, #changelist-filter ul li.selected a:focus, #changelist-filter ul li.selected a:hover {
+    color: #fed102;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: #fed102;
+    color: #000;
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    background: #fed102;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover {
+    background-color: #000;
+    color: #fed102;
+}
+
+.button.default:hover, input[type=submit].default:hover, .submit-row input.default:hover {
+    background-color: #000;
+    color: #fed102;
+}

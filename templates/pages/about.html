@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block title %} | About Us {% endblock %}
+{% block  content %}
+<div class="showcase gb">
+    <div class="bg-image"></div>
+    <div class="show-wrapper">
+        <div class="content">
+            <h1><span>About Us</span></h1>
+        </div>
+    </div>
+</div>
+<section class="about">
+    {% if about_us %}
+    {% for about in about_us %}
+    <div class="content">
+        <div class="abt-image">
+            <img src="{{ about.image.url}}" alt="about image">
+        </div>
+        <div class="info">
+            <h1 class="subtitle">About Us</h1>
+            <h1 class="title">{{about.title}}</h1>
+            <p>
+                {{about.description}}
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="no-content">
+        <p class="para"> No content Available</p>
+    </div>
+    {% endif %}
+</section>
+</div>
+<!-- timelime -->
+<div id="timeline_about">
+    <div class="tl-info">
+        <h1 class="subtitle">our company history</h1>
+        <h1 class="title">A short timeline about our company. See the transformation below </h1>
+    </div>
+    <div class="timeline">
+    {% if timelines %}
+    {% for timeline in timelines %}
+        <div class="about_container">
+            <div class="about_content">
+                <h2>{{timeline.years}}</h2>
+                <p class="tl_para">{{timeline.time_info}}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-content">
+        <p class="para"> Timeline is empty.</p>
+    </div>
+    {% endif %}
+</div>
+<!-- timelime end -->
+<!-- team card -->
+<div class="team-container">
+    <div class="intro">
+        <h1 class="subtitle">Our Team Member</h1>
+        <h1 class="title">Meet our team the people who run the site.</h1>
+    </div>
+    <div class="team-faders">
+        <div class="team-left"></div>
+        <div class="team-right"></div>
+    </div>
+    <div class="card-items">
+        {% if teams %}
+        {% for team in teams %}
+        <div class="team-card">
+            <div class="team_card_image">
+                <img src="{{ team.image.url }}" alt="team card image">
+            </div>
+            <div class="team_card_info">
+                <h1 class="team_name">{{team.name}}</h1>
+                <h1 class="team_skill">{{team.carreer}}</h1>
+                <p class="team_description">
+                    {{team.description}}
+                </p>
+            </div>
+            <div class="team_card_icons">
+                <a href="{{team.facebook}}" class="social_icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="{{team.twitter}}" class="social_icon"><i class="fab fa-twitter"></i></a>
+                <a href="{{team.instagram}}" class="social_icon"><i class="fab fa-instagram"></i></a>
+                <a href="{{team.gmail}}" class="social_icon"><i class="fab fa-google-plus-g"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-content">
+            <p class="para"> Team member is not available</p>
+        </div>
+        {% endif %}
+    </div>
+<!-- end team card -->
+
+<!-- <div class="testimonials">
+    <div class="test_content">
+        <h1 class="title">Testimonials</h1>
+        <div class="wrapper">
+            {% if testimonials %}
+                {% for testimonial in testimonials %}
+                    <div class="client">
+                        <div class="img_box">
+                            <img src="images/john.png">
+                        </div>
+                        <div class="info">
+                            <blockquote>{{testimonial.quote}}</blockquote>
+                            <span class="test_author">- {{ testimonial.name }} -</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-content">
+                    <p>No Testimonial have yet posted</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div> -->
+
+<div id="clients">
+    <h1><span class"title-clr">Some of My <br></span> Clients</h1>
+    <div class="client-content">
+        {% if clients %}
+        {% for client in clients %}
+            <div class="client-img">
+                <a href="{{client.client_link}}" class="client-link">
+                    <img src="{{client.image.url}}" alt="client images">
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-content">
+            <p class="para"> There is no client yet listed</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+</section>
+{% endblock%}

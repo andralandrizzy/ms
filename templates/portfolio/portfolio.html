@@ -1,0 +1,91 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %} | Our Portfolios {% endblock %}
+{% block content %}
+
+<div class="showcase gb">
+    <div class="bg-image"></div>
+    <div class="show-wrapper">
+        <div class="content">
+            <h1><span>Portfolio</span></h1>
+        </div>
+    </div>
+</div>
+<section id="portfolio">
+    <div class="portfolio_wrapper">
+        <h1 class="subtitle">Our Portfolio</h1>
+        <h1 class="title">Check Our Recent Client Work</h1>
+        <div class="port-content">
+            <!-- <ul>
+                <li><a href="#">All</a></li>
+                <li><a href="#">latest</a></li>
+                <li><a href="#">security</a></li>
+                <li><a href="#">bodyguard</a></li>
+                <li><a href="#">transportation</a></li>
+            </ul> -->
+            <div class="port-img-grid">
+                {% if portfolios %}
+                {% for portfolio in portfolios %}
+                <div class="port-img">
+                    <img src="{{portfolio.image.url}}" alt="Images portfolio">
+                    <a class="img-link" href="{% url 'portfolio' portfolio.id %}">
+                        <div class="overlay">
+                            <div class="text">
+                                <h1 class="info">{{portfolio.title}}<br> <span class="subinfo">{{portfolio.job}}</span></h1>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+                </div>
+                {% else %}
+                <div class="no-content">
+                    <p class="blog-para"> No content Available</p>
+                </div>
+                {% endif %}
+            </div>
+            <div class="pagination">
+                {% if portfolios.has_other_pages %}
+                <div class="paginators">
+                    {% if portfolios.has_previous %}
+                    <a class="clr" href="?page = {{portfolios.previous_page_number}}">&laquo;</a>
+                    {% else %}
+                    <a class="disabled clr">&laquo;</a>
+                    {% endif %}
+                    {% for i in portfolios.paginator.page_range %}
+                    {% if portfolios.number == i %}
+                    <a class="active">{{i}}</a>
+                    {% else %}
+                    <a href="?page={{i}}">{{i}}</a>
+                    {% endif %}
+                    {% endfor%}
+                    {% if portfolios.has_next %}
+                    <a class="clr" href="?page = {{portfolios.next_page_number}}">&raquo;</a>
+                    {% else %}
+                    <a class="disabled clr">&raquo;</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div id="clients">
+        <h1><span class"title-clr">Some of My <br></span> Clients</h1>
+        <div class="client-content">
+            {% if clients %}
+            {% for client in clients %}
+            <div class="client-img">
+                <a href="{{client.client_link}}" class="client-link">
+                    <img src="{{client.image.url}}" alt="client images">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-content">
+            <p class="blog-para"> No content Available</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock%}

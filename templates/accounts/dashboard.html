@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %} | User Dashboard {% endblock %}
+{% block content %}
+{% include 'partials/_alerts.html' %}
+    <section class="dashboard">
+        <div class="dash-wrapper">
+            <div class="dash-user-image">
+                <img class="dash-image" src="//unsplash.it/845/" alt=user image>
+            </div>
+            <div class="dash-user-info">
+                <div class="welcome">
+                    <h1>Welcome back (Andral Orelus)</h1>
+                    <p>Duis vitae augue venenatis, blandit massa quis, ultricies elit. Fusce mattis magna non lacus
+                        interdum, mollis condimentum libero rutrum. Vivamus eu ultrices metus.</p>
+                    <p>Do you want to add a testimonial?</p>
+                    <div class="button"><a class="dash-btn" id="formTestBtn" href="#">Add Testimonial</a></div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    <section class="testimonial-form">
+        <div class="message_form" id="formModal">
+            <div class="form-msg">
+                <span class="modal-close">&times;</span>
+                <h1 class="form-msg-title">Leave a Testimonial</h1>
+                <form action="{% url 'dashboard' %}" method="POST">
+                    {% csrf_token %}
+                    {% if user.is_authenticated %}
+                    <input type="hidden" name="user_id" value="{{user.id}}">
+                    {% else %}
+                    <input type="hidden" name="user_id" value="0">
+                    {% endif %}
+                    <textarea name="quote" placeholder="Enter Quote" id="textarea1" class="materialize-textarea" cols="30"
+                        rows="10" required></textarea>
+                    <input type="text" name="name" placeholder="Enter your name" {% if user.is_authenticated %}
+                        value="{{user.first_name}} {{user.last_name}}" {% endif %} required>
+                    <input type="submit" value="Send" class="form-btn">
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

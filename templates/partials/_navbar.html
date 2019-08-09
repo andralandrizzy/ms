@@ -1,0 +1,82 @@
+{% load static %}
+<header>
+    <div class="logo">
+        <img src="{% static 'images/logo.jpg' %}" alt="">
+    </div>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="left hide-on-med-and-down">
+                <li 
+                    {% if '/' == request.path %}
+                        class="link-active"
+                    {% else %}
+                        class=""
+                    {% endif %}
+                    >
+                    <a class="link" href="{% url 'index' %}">Home</a></li>
+                <li
+                    {% if 'about' in request.path %}
+                        class="link-active"
+                    {% else %}
+                        class=""
+                    {% endif %}
+                    >
+                    <a class="link" href="{% url 'about' %}">About</a>
+                </li>
+                
+                <li 
+                    {% if 'service' in request.path %} 
+                        class="link-active" 
+                    {% else %} 
+                        class="" 
+                    {% endif %}
+                    >
+                    <a class="link" href="{% url 'services' %}">Services</a>
+                </li>
+                <li 
+                    {% if 'portfolio' in request.path %} 
+                        class="link-active" 
+                    {% else %} 
+                        class="" 
+                    {% endif %}
+                    >
+                    <a class="link" href="{% url 'portfolios' %}">Portfolio</a>
+                </li>
+                <li 
+                    {% if 'contact' in request.path %} 
+                        class="link-active" 
+                    {% else %} 
+                        class="" 
+                    {% endif %}
+                    >
+                    <a class="link" href="{% url 'contact' %}">Contact</a>
+                </li>
+            </ul>
+            <ul class="right icons_list">
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                    <form action="{% url 'logout' %}" method="POST" id="logout">
+                        {% csrf_token %}
+                        <input type="hidden">
+                    </form>
+                </li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'services' %}">services</a></li>
+                <li><a href="{% url 'portfolios' %}">Portfolio</a></li>
+                <li><a href="{% url 'contact' %}">contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>

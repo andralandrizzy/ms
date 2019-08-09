@@ -1,0 +1,96 @@
+{% extends 'base.html'%}
+{% block title %} | Contact Us {% endblock %}
+{% block content %}
+<div class="showcase gb">
+    <div class="bg-image"></div>
+    <div class="show-wrapper">
+        <div class="content">
+            <h1><span>Contact</span></h1>
+        </div>
+    </div>
+</div>
+
+<section id="contact-us">
+    {% include 'partials/_alerts.html' %}
+    <div class="our-contact">
+        <div class="contact_us">
+            <div class="map-wrapper">
+                <div class="map-box" id="map"></div>
+            </div>
+            
+            <div class="message_form">
+                <div class="form-msg">
+                    <h1 class="form-msg-title">get in touch</h1>
+                    <form action="{% url 'contact' %}" method="POST">
+                        {% csrf_token %}
+                        {% if user.is_authenticated %}
+                        <input type="hidden" name="user_id" value="{{user.id}}">
+                        {% else %}
+                        <input type="hidden" name="user_id" value="0">
+                        {% endif %}
+                        <textarea name="message" placeholder="Enter Message" id="textarea1" 
+                        class="materialize-textarea" cols="30" rows="10"></textarea>
+                        <div class="split">
+                            <input type="text" name="name" placeholder="Enter your name" 
+                            {% if user.is_authenticated %} 
+                                value="{{user.first_name}} {{user.last_name}}"
+                            {% endif %}>
+                            <input type="text" name="email" placeholder="Enter email address"
+                            {% if user.is_authenticated %} 
+                                value="{{user.email}}"
+                            {% endif %}>
+                        </div>
+                        <input type="text" name="subject" placeholder="Enter Subject">
+                        <!-- <input type="submit" value="Send Message"> -->
+                        <input type="submit" value="Send message" class="form-btn">
+                    </form>
+                </div>
+            </div>
+            <div class="contact_info_list">
+                {% if contact_me %}
+                {% for contact in contact_me %}
+                <div class="contact-wrap">
+                    <div class="content-info">
+                        <a href="#"><i class="fas fa-home"></i></a>
+                        <h2>{{contact.street_num}} {{contact.street_name}} <br> <span>{{contact.city}}, <span>{{contact.state}}</span> {{contact.zipcode}}</span></h2>
+                    </div>
+                    <div class="content-info">
+                        <a href="#"><i class="fas fa-mobile-alt"></i></a>
+                        <h2> {{contact.phone_number}}<br> <span>{{contact.flexibility}}</span></h2>
+                    </div>
+                    <div class="content-info">
+                        <a href="#"><i class="far fa-envelope"></i></a>
+                        <h2>{{contact.business_email}}<br> <span>{{contact.email_avail}}</span></h2>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="content">
+                    <p class="para">No Contact To Display</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div id="clients">
+        <h1><span class"title-clr">Some of My <br></span> Clients</h1>
+        <div class="client-content">
+            {% if clients %}
+            {% for client in clients %}
+            <div class="client-img">
+                <a href="{{client.client_link}}" class="client-link">
+                    <img src="{{client.image.url}}" alt="client images">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-content">
+            <p class="para"> There is no client yet listed</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock%}
