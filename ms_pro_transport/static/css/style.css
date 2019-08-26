@@ -1325,23 +1325,16 @@ img {
 	margin: auto;
 }
 
-.service_card-wrapper {
+/* .service_card-wrapper {
 	display: flex;
 	flex-flow: row wrap;
 	width: 100%;
 	height: 100%;
 	justify-content: center;
-}
+} */
 
-.service_card {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	width: 25rem;
-	height: auto;
-	margin: 20px 10px;
+#service .service_card {
+	margin: 0.7em;
 	padding: 5rem 1rem;
 	border-radius: 10px;
 	background: rgb(0, 0, 0);
@@ -2376,7 +2369,6 @@ h1, h2, h3, p {
 	}
 	.title {
 		font-size: 2rem;
-		width: 75%;
 	}
 	.about_us .facts, .service, .latest_news .news_collection {
 		padding: 4rem;
@@ -2439,13 +2431,13 @@ h1, h2, h3, p {
 	.service_wrapper, .portfolio_wrapper, .home-portfolio {
 		padding: 4rem;
 	}
-	.service_wrapper h1, .portfolio_wrapper h1 {
+	.portfolio_wrapper h1 {
 		text-align: start;
 		padding: 0 1rem;
 	}
-	.service_card-wrapper {
+	/* .service_card-wrapper {
 		justify-content: flex-start;
-	}
+	} */
 	.btn-wrapper {
 		justify-content: start;
 	}
@@ -2460,6 +2452,11 @@ h1, h2, h3, p {
 	}
 	.service_page_image.rc1 {
 		order: 2;
+	}
+	.service_card-wrapper.row .col.l4 {
+		width: 31%;
+		left: auto;
+		right: auto;
 	}
 	/* home page portfolio section  */
 	.home-portfolio {
@@ -2607,6 +2604,9 @@ h1, h2, h3, p {
 		margin: 2rem 0;
 		-webkit-box-shadow: 0px 10px 13px -7px #000000, 5px -23px 0px 50px rgba(0, 0, 0, 0);
 		box-shadow: 0px 10px 13px -7px #000000, 5px -23px 0px 50px rgba(0, 0, 0, 0);
+	}
+	#service .service_card {
+		margin: 0.6em auto;
 	}
 	.our_service .service_page_info:nth-child(even) .service_page_text .serv_title, .our_service .service_page_info:nth-child(even) .service_page_text .serv_para {
 		padding: 0rem;

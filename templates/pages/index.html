@@ -92,16 +92,16 @@
     </div>
 </section>
 <section id="service">
-    <div class="service_wrapper">
+    <div class="service_wrapper col s12 center">
         <h1 class="subtitle">Our Services</h1>
         <h1 class="title">What Services do we have to offer you</h1>
-        <div class="service_card-wrapper">
+        <div class="service_card-wrapper row">
 
             {% if services %}
             {% for service in services %}
-            <div class="service_card">
+            <div class="service_card col s12 l4">
                 <a href="#" class="card_icons"><i class="">{{service.icon.as_html}}</i></a>
-                <h1>{{service.job}}</h1>
+                <h1 class="center">{{service.job}}</h1>
                 <p>{{service.summary}}
                 </p>
                 <a class="card_btn" href="#"><span>learn M</span>ore</a>
